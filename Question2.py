@@ -1,8 +1,8 @@
 def AbsoluteError(p, p_star):
-    return p - p_star
+    return abs(p - p_star)
 
 def RelativeError(p, p_star):
-    return (p - p_star) / p
+    return abs((p - p_star)) / abs(p)
 
 def Fatorial(n):
     if n == 1:
