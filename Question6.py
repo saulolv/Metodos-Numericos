@@ -22,7 +22,7 @@ def MetodoBissecao(f, a, b, tolerance=1e-6, max_iterations=100):
         previous_midpoint = midpoint
         max_iterations -= 1
 
-    return (a + b) / 2
+    return midpoint
 
     
 def MetodoNewton(f, df, x0, tolerance=1e-6, max_iterations=100):

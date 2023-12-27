@@ -62,4 +62,5 @@ def main():
     e = Decimal('2.7182818284590452353602874713527')
     calc_exato_c = (Decimal(13) / Decimal(4) - Decimal(6) / Decimal(7)) / ((Decimal('2') * Decimal(e)) - Decimal('5.4'))
     imprimir_resultados('Exemplo c) ((13/4) - (6/7)) / (2e - 5.4)', calc_exato_c, calcular_aproximacoes(calc_exato_c))
+
 main()

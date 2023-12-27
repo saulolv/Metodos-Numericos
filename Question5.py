@@ -1,7 +1,7 @@
 def find_smallest_n():
     n = 0
     resultado = 1.0 + 2**(-n)
-    while resultado != 1.0:
+    while resultado > 1.0:
         n += 1
         resultado = 1 + 2**(-n)
     return n

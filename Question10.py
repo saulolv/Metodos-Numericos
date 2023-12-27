@@ -43,6 +43,7 @@ def MetodoBissecao(f, a, b, tolerance=1e-6, max_iterations=100):
             a = midpoint
 
         max_iterations -= 1
+            
 
     return seq_aprox
 
@@ -64,49 +65,20 @@ def MetodoNewton(f, df, x0, tolerance=1e-6, max_iterations=100):
     
     return seq_aprox
 
-def linspace(a, b, n):
-    return [a + i * (b - a) / n for i in range(n + 1)]
 
-
-def Solve(f, df, intervalo):
+def Solve(f, df, intervalo, alternative):
     a, b = intervalo
-    tol = 1e-6
-    
-    seq_aprox_bissecao = MetodoBissecao(f, a, b, tol)
-    seq_aprox_newton = MetodoNewton(f, df, (a + b) / 2, tol)
-    
-    x_values = linspace(a, b, 100)
-    y_values = [f(x) for x in x_values]
-    
-    # Plotar para o Método da Bisseção
-    plt.figure(figsize=(12, 6))
-    plt.subplot(1, 2, 1)  # Subplot 1 (1 linha, 2 colunas, primeiro subplot)
-    plt.plot(x_values, y_values, label='f(x)')
-    plt.scatter(seq_aprox_bissecao, [f(x) for x in seq_aprox_bissecao], c=range(len(seq_aprox_bissecao)), cmap='viridis', label='Bisseção')
-    plt.colorbar(label="Índice da Sequência")
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Bisseção')
-    plt.legend()
+    tol = 1e-4
 
-    # Plotar para o Método de Newton
-    plt.subplot(1, 2, 2)  # Subplot 2 (1 linha, 2 colunas, segundo subplot)
-    plt.plot(x_values, y_values, label='f(x)')
-    plt.scatter(seq_aprox_newton, [f(x) for x in seq_aprox_newton], c=range(len(seq_aprox_newton)), cmap='viridis', label='Newton')
-    plt.colorbar(label="Índice da Sequência")
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Newton')
-    plt.legend()
-
-    plt.tight_layout()  # Ajusta a layout para evitar sobreposição
-    plt.show()
-    
+    min_iterations_bissecao = len(MetodoBissecao(f, a, b, tol))
+    min_iterations_newton = len(MetodoNewton(f, df, (a + b) / 2, tol))
+    print(f"Para a função {alternative}: O método da bisseção convergiu ou chegou no limite de interações em: {min_iterations_bissecao} iterações.")
+    print(f"Para a função {alternative}: O método de Newton convergiu em ou chegou no limite de interações em: {min_iterations_newton} iterações.\n")
 
 def main():
-    Solve(f_a, df_a, (0, 1))
-    Solve(f_b, df_b, (0, 0.5))
-    Solve(f_c, df_c, (-3, -2))
-    Solve(f_d, df_d, (3, 5))
+    Solve(f_a, df_a, (0, 1), "A")
+    Solve(f_b, df_b, (0, 0.5), "B")
+    Solve(f_c, df_c, (-3, -2), "C")
+    Solve(f_d, df_d, (3, 5), "D")
     
 main()
